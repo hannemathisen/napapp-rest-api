@@ -82,8 +82,6 @@ function get_users($id=0) {
       mysqli_real_escape_string($conn, $name),
       mysqli_real_escape_string($conn, $home_address));
 
-		// $query = "INSERT INTO users SET reg_number='{$reg_number}', latitude={$latitude}, longitude={$longitude}, booked='{$booked}'";
-
     if (mysqli_query($connection, $query)) {
 			$response = array(
 				'status' => 1,

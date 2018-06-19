@@ -83,37 +83,6 @@ function get_rides($id, $car_id, $user_id, $start_time, $end_time) {
       }
     }
   }
-  //
-    // if ($car_id != 0) {
-    //   $query .= " WHERE r.car_id=".$car_id;
-    //   if ($user_id != 0) {
-    //     $query .= " AND r.user_id=".$user_id;
-    //   } if ($start_time != 0) {
-    //     $query .= " AND start_time>=FROM_UNIXTIME(".$start_time.")";
-    //   } if ($end_time != 0) {
-    //     $query .= " AND end_time<=FROM_UNIXTIME(".$end_time.")";
-    //   }
-    // }
-    //
-    // else if ($user_id != 0) {
-		// 	$query .= " WHERE user_id=".$user_id;
-    //   if ($start_time != 0) {
-    //    $query .= " AND start_time>=FROM_UNIXTIME(".$start_time.")";
-    //  } if ($end_time != 0) {
-    //    $query .= " AND end_time<=FROM_UNIXTIME(".$end_time.")";
-    //  }
-		// }
-    //
-    // else if ($start_time != 0) {
-    //   $query .= " WHERE start_time>=FROM_UNIXTIME(".$start_time.")";
-    //   if ($end_time != 0) {
-    //     $query .= " AND end_time<=FROM_UNIXTIME(".$end_time.")";
-    //   }
-    // }
-    //
-    // else if ($end_time != 0) {
-    //   $query .= " WHERE end_time<=FROM_UNIXTIME(".$end_time.")";
-    // }
 
 		$response = array();
 		$result = mysqli_query($connection, $query);
@@ -160,35 +129,11 @@ function get_rides($id, $car_id, $user_id, $start_time, $end_time) {
     $end_longitude = $data->end_longitude;
     $end_time = $data->end_time;
 
-    // $car_id = $_POST["car_id"];
-    // $user_id = $_POST["user_id"];
-		// $start_latitude = $_POST["start_latitude"];
-		// $start_longitude = $_POST["start_longitude"];
-    // $start_time = $_POST["start_time"];
-    // $via_latitude = $_POST["via_latitude"];
-    // $via_longitude = $_POST["via_longitude"];
-    // $via_time = $_POST["via_time"];
-    // $end_latitude = $_POST["end_latitude"];
-    // $end_longitude = $_POST["end_longitude"];
-    // $end_time = $_POST["end_time"];
 
     $query = sprintf(
       "INSERT INTO rides (car_id, user_id, start_latitude, start_longitude, start_time, via_latitude, via_longitude, via_time, end_latitude, end_longitude, end_time)
       VALUES ('%s', '%s', '%s', '%s', FROM_UNIXTIME('%s'), '%s', '%s', FROM_UNIXTIME('%s'), '%s', '%s', FROM_UNIXTIME('%s'))",
       $car_id, $user_id, $start_latitude, $start_longitude, $start_time, $via_latitude, $via_longitude, $via_time, $end_latitude, $end_longitude, $end_time);
-      // mysqli_real_escape_string($conn, $car_id),
-      // mysqli_real_escape_string($conn, $user_id),
-      // mysqli_real_escape_string($conn, $start_latitude),
-      // mysqli_real_escape_string($conn, $start_longitude),
-      // mysqli_real_escape_string($conn, $start_time),
-      // mysqli_real_escape_string($conn, $via_latitude),
-      // mysqli_real_escape_string($conn, $via_longitude),
-      // mysqli_real_escape_string($conn, $via_time),
-      // mysqli_real_escape_string($conn, $end_latitude),
-      // mysqli_real_escape_string($conn, $end_longitude),
-      // mysqli_real_escape_string($conn, $end_time));
-
-		// $query = "INSERT INTO rides SET reg_number='{$reg_number}', latitude={$latitude}, longitude={$longitude}, booked='{$booked}'";
 
     if (mysqli_query($connection, $query)) {
 			$response = array(
